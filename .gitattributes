@@ -1,0 +1,36 @@
+# AirWatch Git LFS Configuration
+# Jalankan perintah berikut untuk mengaktifkan Git LFS:
+#   git lfs install
+#   git add .gitattributes
+#   git commit -m "chore: add Git LFS tracking"
+
+# ── ML Model files (biner, bisa sangat besar) ─────────────
+*.joblib filter=lfs diff=lfs merge=lfs -text
+*.pkl filter=lfs diff=lfs merge=lfs -text
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+
+# ── Dataset files (CSV besar) ─────────────────────────────
+# CATATAN: File CSV di folder dataset/ di-exclude via .gitignore
+# Jika ingin menyertakan dataset kecil, gunakan LFS:
+# *.csv filter=lfs diff=lfs merge=lfs -text
+
+# ── Prophet model JSON (bisa besar) ──────────────────────
+model/**/*.json filter=lfs diff=lfs merge=lfs -text
+
+# ── Ensure text files use LF line endings ────────────────
+*.py text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.env.example text eol=lf
+*.txt text eol=lf
+*.html text eol=lf
+*.css text eol=lf

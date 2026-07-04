@@ -1,0 +1,131 @@
+# =============================================================
+# AirWatch - Root .gitignore
+# =============================================================
+
+# ──────────────────────────────────────────
+# Python / Backend
+# ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+backend/venv/
+backend/.venv/
+
+# Environment variables (JANGAN PERNAH DI-PUSH!)
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# pytest / testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ──────────────────────────────────────────
+# Node.js / Frontend
+# ──────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+dist-ssr/
+frontend/dist/
+frontend/dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ──────────────────────────────────────────
+# Dataset (file besar - gunakan Git LFS atau exclude)
+# ──────────────────────────────────────────
+# File CSV dataset sangat besar (>18MB per file).
+# Uncomment baris di bawah jika tidak menggunakan Git LFS:
+# dataset/
+
+*.csv
+
+# ──────────────────────────────────────────
+# ML Models (file biner besar - DIKECUALIKAN)
+# ──────────────────────────────────────────
+# Joblib model files bisa sangat besar. Simpan di cloud storage.
+*.joblib
+*.pkl
+
+# Seluruh folder model dikecualikan
+model/
+
+# ──────────────────────────────────────────
+# Editor & IDE
+# ──────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# ──────────────────────────────────────────
+# OS generated files
+# ──────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ──────────────────────────────────────────
+# Backup files
+# ──────────────────────────────────────────
+*.bak
+*.backup
+*.orig
+*.tmp
+
+# ──────────────────────────────────────────
+# Python cache di dalam backend
+# ──────────────────────────────────────────
+backend/app/__pycache__/
+backend/app/routers/__pycache__/
+backend/app/services/__pycache__/

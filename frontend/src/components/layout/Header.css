@@ -1,0 +1,117 @@
+.aqi-header {
+  color: var(--color-white);
+  padding: var(--space-xl) 0;
+  transition: background 0.6s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.header-info h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  margin-top: 0;
+}
+
+.aqi-details {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.co-value {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.aqi-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.control-selectors {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.country-select {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.country-select:hover, .country-select:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.country-select option {
+  color: var(--color-deep-night);
+  background: white;
+}
+
+.pollutant-pills {
+  display: flex;
+  gap: var(--space-xs);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.pollutant-pill {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pollutant-pill:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pollutant-pill.active {
+  background: white;
+  color: var(--color-deep-night);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
