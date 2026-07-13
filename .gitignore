@@ -1,5 +1,5 @@
 # =============================================================
-# AirWatch - Root .gitignore
+# AirQuality - Root .gitignore
 # =============================================================
 
 # ──────────────────────────────────────────
@@ -76,17 +76,19 @@ lerna-debug.log*
 # Uncomment baris di bawah jika tidak menggunakan Git LFS:
 # dataset/
 
-*.csv
+# Diizinkan untuk di-push (permintaan pengguna)
+# *.csv
 
 # ──────────────────────────────────────────
 # ML Models (file biner besar - DIKECUALIKAN)
 # ──────────────────────────────────────────
 # Joblib model files bisa sangat besar. Simpan di cloud storage.
-*.joblib
-*.pkl
+# Diizinkan untuk di-push (permintaan pengguna)
+# *.joblib
+# *.pkl
 
 # Seluruh folder model dikecualikan
-model/
+# model/
 
 # ──────────────────────────────────────────
 # Editor & IDE

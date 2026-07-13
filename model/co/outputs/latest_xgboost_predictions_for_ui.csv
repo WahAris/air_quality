@@ -1,0 +1,16 @@
+country,datetime,pollutant,model,horizon,prediction,unit
+hongkong,2026-05-29 00:00:00+00:00,CO,XGBoost,h1,0.5903,ppm
+london,2026-06-24 02:00:00+00:00,CO,XGBoost,h1,0.18,ppm
+bangkok,2026-07-02 01:00:00+00:00,CO,XGBoost,h1,0.2944,ppm
+philadelphia,2026-07-13 00:00:00+00:00,CO,XGBoost,h1,0.1167,ppm
+canberra,2026-07-13 01:00:00+00:00,CO,XGBoost,h1,0.0073,ppm
+hongkong,2026-05-29 00:00:00+00:00,CO,XGBoost,h6,0.4654,ppm
+london,2026-06-24 02:00:00+00:00,CO,XGBoost,h6,0.3887,ppm
+bangkok,2026-07-02 01:00:00+00:00,CO,XGBoost,h6,0.2801,ppm
+philadelphia,2026-07-13 00:00:00+00:00,CO,XGBoost,h6,0.1407,ppm
+canberra,2026-07-13 01:00:00+00:00,CO,XGBoost,h6,0.0397,ppm
+hongkong,2026-05-29 00:00:00+00:00,CO,XGBoost,h24,0.4586,ppm
+london,2026-06-24 02:00:00+00:00,CO,XGBoost,h24,0.2336,ppm
+bangkok,2026-07-02 01:00:00+00:00,CO,XGBoost,h24,0.316,ppm
+philadelphia,2026-07-13 00:00:00+00:00,CO,XGBoost,h24,0.2137,ppm
+canberra,2026-07-13 01:00:00+00:00,CO,XGBoost,h24,0.2545,ppm

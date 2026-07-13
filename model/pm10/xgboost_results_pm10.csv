@@ -1,0 +1,4 @@
+horizon,best_iteration,train_score,test_score,ratio,overfit,mae,rmse,smape,train_size,test_size
+h1,504,4.8525,3.7248,0.77,normal,1.6273,3.7248,9.01,173580,19273
+h6,466,7.6703,6.4059,0.84,normal,3.7155,6.4059,20.06,173580,19248
+h24,238,11.211,9.1035,0.81,normal,6.2088,9.1035,32.82,173580,19158

@@ -39,17 +39,11 @@ def get_summary(pollutant: Optional[str] = Query("co")):
     
     summary_data = []
     
-    res = supabase.table(table).select("*").eq("pollutant", pollutant).in_("country", COUNTRIES).order("datetime_utc", desc=True).limit(200).execute()
-    
-    country_records = {}
-    for row in res.data:
-        c = row["country"]
-        if c not in country_records:
-            country_records[c] = []
-        country_records[c].append(row)
-        
     for country in COUNTRIES:
-        records = country_records.get(country, [])
+        # Fetch latest 25 records per country to get the current value and the 24h ago value
+        res = supabase.table(table).select("*").eq("pollutant", pollutant).eq("country", country).order("datetime_utc", desc=True).limit(25).execute()
+        records = res.data
+        
         if not records:
             continue
             
@@ -58,7 +52,7 @@ def get_summary(pollutant: Optional[str] = Query("co")):
         
         change_24h = 0.0
         if len(records) > 24:
-            old_record = records[min(24, len(records)-1)]
+            old_record = records[24]
             change_24h = value - old_record.get("value", 0)
             
         summary_data.append({

@@ -16,6 +16,7 @@ app.include_router(data.router, prefix="/api/data", tags=["data"])
 app.include_router(forecast.router, prefix="/api/forecast", tags=["forecast"])
 app.include_router(gis.router, prefix="/api/gis", tags=["gis"])
 
+
 @app.get("/health")
 def health_check():
     return {"status": "ok", "message": "Backend is running"}

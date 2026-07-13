@@ -1,173 +1,57 @@
-# ─────────────────────────────────────────────────────────
-# AirWatch - README.md
-# ─────────────────────────────────────────────────────────
+# Sistem Pemantauan Kualitas Udara
 
-# 🌬️ AirWatch — Sistem Monitoring Kualitas Udara
-
-Aplikasi web untuk monitoring dan prediksi kualitas udara berbasis ML (Machine Learning). Menampilkan data polutan (PM2.5, PM10, O3, NO2, CO) dari berbagai kota dengan visualisasi GIS, grafik tren, dan forecast.
-
-## 📦 Tech Stack
-
-| Layer | Teknologi |
-|-------|-----------|
-| Frontend | React 19, Vite, MapLibre GL, Recharts |
-| Backend | FastAPI, Python 3.11+ |
-| Database | Supabase (PostgreSQL) |
-| ML Models | XGBoost, Prophet (Facebook) |
-| Map Tiles | OpenFreeMap |
-
-## 🗂️ Struktur Proyek
-
-```
-web_air_baru/
-├── backend/          # FastAPI backend
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── database.py
-│   │   ├── routers/  # data, forecast, gis
-│   │   └── services/ # forecast_service
-│   ├── requirements.txt
-│   └── .env.example
-├── frontend/         # React + Vite frontend
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── .env.example
-├── model/            # File model ML (.joblib, .json)
-│   ├── pm25/
-│   ├── pm10/
-│   ├── o3/
-│   ├── no2/
-│   └── co/
-└── dataset/          # Dataset CSV (tidak di-push, lihat catatan)
-```
-
-## 🚀 Cara Menjalankan
-
-### Prasyarat
-- Python 3.11+
-- Node.js 18+
-- Akun Supabase
+Sistem komprehensif berbasis web untuk memantau, memvisualisasikan, dan meramalkan kualitas udara secara real-time di lima kota utama: Bangkok, Canberra, Causeway Bay, London, dan Philadelphia. Sistem ini memantau berbagai parameter polutan utama termasuk CO, NO₂, O₃, PM10, dan PM2.5.
 
 ---
 
-### 1. Backend (FastAPI)
+## Ringkasan Fitur
 
-```bash
-cd backend
-
-# Buat virtual environment
-python -m venv venv
-source venv/bin/activate      # Linux/macOS
-# atau
-venv\Scripts\activate         # Windows
-
-# Install dependensi
-pip install -r requirements.txt
-
-# Salin dan isi environment variables
-cp .env.example .env
-# Edit file .env dengan kredensial Supabase Anda
-
-# Jalankan server
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-Backend akan tersedia di: `http://localhost:8000`  
-Dokumentasi API: `http://localhost:8000/docs`
+- **Dashboard Terintegrasi**: Pemantauan metrik kualitas udara terkini secara real-time dari berbagai stasiun sensor di seluruh dunia.
+- **Analisis Data Historis**: Eksplorasi tren dan pola polusi udara menggunakan grafik interaktif berdasarkan rentang waktu tertentu.
+- **Peramalan (Forecasting)**: Estimasi tingkat polutan di masa depan berdasarkan analisis data historis untuk mendukung pengambilan keputusan.
+- **Visualisasi Geospasial**: Pemetaan lokasi sensor interaktif (GIS) yang dilengkapi dengan representasi heatmap untuk melihat sebaran polutan secara spasial.
 
 ---
 
-### 2. Frontend (React + Vite)
+## Arsitektur & Teknologi
 
-```bash
-cd frontend
+Proyek ini dibangun menggunakan arsitektur modern yang memisahkan antara antarmuka pengguna, layanan backend, dan penyimpanan data:
 
-# Install dependensi
-npm install
-
-# Salin dan isi environment variables
-cp .env.example .env
-# Edit file .env dengan kredensial Supabase & URL backend Anda
-
-# Jalankan dev server
-npm run dev
-```
-
-Frontend akan tersedia di: `http://localhost:5173`
+- **Frontend**: React, Vite, Recharts (Visualisasi Data), MapLibre GL (Web GIS)
+- **Backend**: FastAPI (Python), Uvicorn
+- **Database**: Supabase (PostgreSQL)
+- **Machine Learning**: XGBoost, Prophet
 
 ---
 
-## ⚙️ Environment Variables
+## Model Prediksi
 
-### Backend (`backend/.env`)
+Sistem ini mengimplementasikan dua jenis pendekatan pemodelan untuk menangani rentang waktu peramalan yang berbeda:
 
-| Variabel | Deskripsi | Contoh |
-|----------|-----------|--------|
-| `SUPABASE_URL` | URL project Supabase | `https://xxx.supabase.co` |
-| `SUPABASE_KEY` | Supabase anon/service key | `eyJ...` |
-| `MODEL_DIR` | Path folder model ML | `./models` |
-| `ALLOWED_ORIGINS` | URL frontend untuk CORS | `http://localhost:5173` |
+### 1. Model Prediksi Jangka Pendek (XGBoost)
+Algoritma berbasis gradient boosting yang dikonfigurasi untuk memprediksi tingkat polutan dalam rentang waktu singkat (1 hingga 48 jam ke depan). Pendekatan ini memanfaatkan fitur temporal dan pola sekuensial dari data sensor untuk menghasilkan estimasi yang presisi.
 
-### Frontend (`frontend/.env`)
-
-| Variabel | Deskripsi | Contoh |
-|----------|-----------|--------|
-| `VITE_SUPABASE_URL` | URL project Supabase | `https://xxx.supabase.co` |
-| `VITE_SUPABASE_KEY` | Supabase anon key | `eyJ...` |
-| `VITE_API_URL` | URL backend FastAPI | `http://localhost:8000` |
-| `VITE_MAP_STYLE` | URL style peta | `https://tiles.openfreemap.org/styles/liberty` |
+### 2. Model Analisis Tren Jangka Panjang (Prophet)
+Model time-series aditif yang handal dalam mendeteksi pola musiman dan tren makro. Model ini diaplikasikan untuk peramalan jangka panjang guna melihat arah pergerakan kualitas udara harian, mingguan, maupun bulanan.
 
 ---
 
-## 🗃️ Dataset & Model
+## Panduan Instalasi & Eksekusi
 
-### Dataset
-File dataset CSV berukuran besar (~18-19 MB per file) dan **tidak disertakan** di repository ini.
+Berikut adalah tahapan umum untuk menjalankan proyek ini di lingkungan lokal Anda.
 
-Untuk mendapatkan dataset:
-- Hubungi maintainer project, atau
-- Jalankan script seed data: `python backend/seed_data.py`
+### Prasyarat Sistem
+- **Node.js** (Versi 18 atau lebih baru) dan paket manajer npm
+- **Python** (Versi 3.11 atau lebih baru)
+- Akses kredensial ke layanan database **Supabase**
 
-### Model ML
-File model `.joblib` tersimpan di folder `model/`. Jika terlalu besar untuk di-push:
-- Gunakan **Git LFS**: `git lfs track "*.joblib"`
-- Atau unduh dari link yang disediakan maintainer
+### Langkah Inisialisasi
 
----
+1. **Konfigurasi Environment**
+   Terdapat dua file environment yang perlu dikonfigurasi (pada backend dan frontend). Salin file .env.example menjadi .env di masing-masing direktori dan isi parameter yang dibutuhkan (terutama kunci API Supabase).
 
-## 📡 API Endpoints
+2. **Inisialisasi Backend (FastAPI)**
+   Masuk ke direktori backend/, sangat disarankan untuk mengaktifkan virtual environment Python. Instal seluruh dependensi melalui berkas requirements.txt, lalu jalankan server Uvicorn.
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/health` | Health check |
-| GET | `/api/data/...` | Data kualitas udara |
-| GET | `/api/forecast/...` | Prediksi kualitas udara |
-| GET | `/api/gis/...` | Data GIS/peta |
-
-Lihat dokumentasi lengkap di `/docs` setelah backend berjalan.
-
----
-
-## 🤝 Kontribusi
-
-1. Fork repository ini
-2. Buat branch baru: `git checkout -b fitur/nama-fitur`
-3. Commit perubahan: `git commit -m 'feat: tambah fitur X'`
-4. Push ke branch: `git push origin fitur/nama-fitur`
-5. Buat Pull Request
-
----
-
-## ⚠️ Keamanan
-
-- **Jangan pernah** commit file `.env` yang berisi kredensial asli
-- Gunakan file `.env.example` sebagai template
-- Rotasi API key jika tidak sengaja ter-expose
-- Untuk production, gunakan environment variables dari platform deployment (Railway, Render, Vercel, dll.)
-
----
-
-## 📄 Lisensi
-
-[MIT License](LICENSE)
+3. **Inisialisasi Frontend (React)**
+   Masuk ke direktori frontend/, instal dependensi Node.js melalui npm install, kemudian mulai jalankan development server aplikasi web.
